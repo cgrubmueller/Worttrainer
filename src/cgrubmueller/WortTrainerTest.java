@@ -84,9 +84,16 @@ public class WortTrainerTest {
 		}
 		
 		l1.delEintrag("WTF");
-		System.out.println("Nach der Löschung:");
-		System.out.println(l1.toString());
+		System.out.println("Nach der Löschung von WTF:");
+		System.out.println(l1.toString() + '\n');
 		
+		System.out.println("Durchschnittliche Wörtlänge:");
+		System.out.println(l1.averageWordLength());
+		System.out.println();
+		
+		l1.filter(3);
+		System.out.println("Nach dem Filtern auf Wörter mit 3 Zeichen:");
+		System.out.println(l1.toString() + '\n');
 		
 		System.out.println("***** WortTest *****");
 		

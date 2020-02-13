@@ -3,6 +3,7 @@ package cgrubmueller.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * This Class creates a WortEintrag-Array and manages it.
@@ -81,5 +82,31 @@ public class WortListe implements Serializable {
 		for (int i=0; i<this.eintragListe.size(); i++) s = s + this.eintragListe.get(i).toString() + '\n';
 		
 		return s;
+	}
+	
+	/**
+	 * Diese Methode geht mit einer for-each alle Eintrgäge der eintragListe durch und 
+	 * rechnet die durchschnittliche Wortlänge aus.
+	 * @return gibt die durchschnittliche Wortlänge in double zurück
+	 */
+	public double averageWordLength() {
+		double cache = 0.0;
+		for (WortEintrag i:this.eintragListe) {
+			cache = cache + i.getWort().length();
+		}
+		cache = (double)cache/this.eintragListe.size();
+		return cache;
+	}
+	
+	/**
+	 * Diese Methode geht alle Einträge der Liste durch und entfernt alle Einträge, dessen Wörter
+	 * weniger lang sind als der übergebene parameter.
+	 * @param laenge ist der Parameter, der bestimmt, welche Einträge gelöscht werden.
+	 */
+	public void filter(int laenge) {
+		Iterator<WortEintrag> it = this.eintragListe.iterator();
+		while (it.hasNext()) {
+			if(it.next().getWort().length() <= laenge) it.remove();
+		}
 	}
 }
